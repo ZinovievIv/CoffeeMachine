@@ -14,35 +14,27 @@ class CoffeeMachine {
         while (true) {
             println("Введите команду")
             var inputCommand = scanner.nextLine()
-            menu(inputCommand)
-
+            when (inputCommand) {
+                "выключить" -> {
+                    println("До свидания!")
+                }
+                "наполнить" -> {
+                    water = 2000
+                    milk = 1000
+                    beans = 1000
+                    println("Ингридиенты пополнены")
+                }
+                "статус" -> println("Ингридиентов осталось: ${water} мл воды\n${milk} мл молока\n${beans} гр кофе")
+                "кофе" -> {
+                    println("Введите название напитка или назад для возврата в главное меню")
+                    var inputCommand2 = scanner.nextLine()
+                    coffee(inputCommand2)
+                }
+            }
         }
     }
 
-    fun menu(i: String) {
-        when (i) {
-            "выключить" -> {
-                println("До свидания!")
 
-            }
-
-            "наполнить" -> {
-                water = 2000
-                milk = 1000
-                beans = 1000
-                println("Ингридиенты пополнены")
-            }
-
-            "статус" -> println("Ингридиентов осталось: ${water} мл воды\n${milk} мл молока\n${beans} гр кофе")
-            "кофе" -> {
-                var inputCommand = scanner.nextLine()
-                coffee(inputCommand)
-
-            }
-
-
-        }
-    }
 
     fun coffee(i: String) {
         when (i) {
@@ -62,20 +54,44 @@ class CoffeeMachine {
                     println("Американо готов")
                 }
             }
+
+            "Капучино" -> {
+                if (checkCoffee(60, 120,20)) {
+                    water = this.water!!.minus(120)
+                    beans = this.beans!!.minus(20)
+                    milk = this.milk!!.minus(60)
+                    println("Капучино готов")
+                }
+            }
+
+            "Латте" -> {
+                if (checkCoffee(120,240,20))
+                water = this.water!!.minus(240)
+                beans = this.beans!!.minus(20)
+                milk = this.milk!!.minus(120)
+            }
+
+            "назад" -> {
+                start()
+            }
+            else -> {
+                println("Рецепт не найден")
+            }
+
         }
     }
 
 
     fun checkCoffee(milk: Int, water: Int, beans: Int): Boolean {
-        if (milk < this.milk!!) {
+        if (milk > this.milk!!) {
             println("Недостаточно молока")
             return false
         } else
-        if (water < this.water!!) {
+        if (water > this.water!!) {
             println("Недостаточно воды")
             return false
         } else
-        if (beans < this.beans!!) {
+        if (beans > this.beans!!) {
             println("Недостаточно кофе")
             return false
         } else return true
@@ -86,8 +102,6 @@ class CoffeeMachine {
     // В этот раз мы не даём вам конкретных указаний, как должна быть написана программа.
     // У вас есть полная свобода действией, главное, что бы программа соответствовала ТЗ.
     // Удачи!
-
-
 
 fun main() {
    var test = CoffeeMachine()
