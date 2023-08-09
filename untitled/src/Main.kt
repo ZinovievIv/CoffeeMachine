@@ -2,19 +2,19 @@ import java.util.*
 import java.util.Scanner
 
 
+
 class CoffeeMachine {
     private var scanner = Scanner(System.`in`)
 
     var water: Int? = 0
     var milk: Int? = 0
     var beans: Int? = 0
-
     var massage : String = " "
 
     fun start() {
         println("Кофемашина готова к работе")
         start2()
-        }
+    }
 
     fun start2() {
         while (true) {
@@ -38,8 +38,8 @@ class CoffeeMachine {
                 "кофе" -> {
                     println("Введите название напитка или \"назад\" для возврата в главное меню")
                     var inputCommand2 = (scanner.nextLine()).lowercase()
-
                     сoffee(inputCommand2)
+
                 }
             }
         }
@@ -48,25 +48,27 @@ class CoffeeMachine {
 
 
     fun сoffee(i: String) {
-        val espresso : String = "эспрессо"
-        val americano : String = "американо"
-        val latte : String = "латте"
-        val kapuchino : String = "капучино"
+        val espresso : String = "Эспрессо"
+        val americano : String = "Американо"
+        val latte : String = "Латте"
+        val kapuchino : String = "Капучино"
         when (i) {
             "эспрессо" -> {
                 if ((checkCoffee(0, 60, 10)) == true) {
+                    var coffeeName : String = "Эспрессо"
                     water = this.water!!.minus(60)
                     beans = this.beans!!.minus(10)
-                    println("${espresso} готов")
+                    println("${coffeeName} готов")
                 } else {
                     println(massage)
                 }
             }
             "американо" -> {
                 if (checkCoffee(0, 120, 10) == true) {
+                    var coffeeName : String = "Американо"
                     water = this.water!!.minus(120)
                     beans = this.beans!!.minus(10)
-                    println("${americano} готов")
+                    println("${coffeeName} готов")
                 } else {
                     println(massage)
                 }
@@ -74,10 +76,11 @@ class CoffeeMachine {
 
             "капучино" -> {
                 if (checkCoffee(60, 120,20) == true) {
+                    var coffeeName : String = "Капучино"
                     water = this.water!!.minus(120)
                     beans = this.beans!!.minus(20)
                     milk = this.milk!!.minus(60)
-                    println("${kapuchino} готов")
+                    println("${coffeeName} готов")
                 } else {
                     println(massage)
                 }
@@ -85,10 +88,11 @@ class CoffeeMachine {
 
             "латте" -> {
                 if (checkCoffee(120, 240, 20) == true) {
+                    var coffeeName : String = "Латте"
                     water = this.water!!.minus(240)
                     beans = this.beans!!.minus(20)
                     milk = this.milk!!.minus(120)
-                    println("${latte} готов")
+                    println("${coffeeName} готов")
                 } else {
                     println(massage)
                 }
@@ -99,7 +103,7 @@ class CoffeeMachine {
             }
             else -> {
                 println("Рецепт не найден!")
-                start2()
+
                 //println("Введите команду")
                 //var inputCommand3 = (scanner.nextLine()).lowercase()
                 //coffee(inputCommand3)
@@ -109,21 +113,27 @@ class CoffeeMachine {
 
 
     fun checkCoffee(milk: Int, water: Int, beans: Int): Any {
-        if (milk > this.milk!!) {
-            massage = "Недостаточно молока"
-            return massage
-        } else
         if (water > this.water!!) {
             massage = "Недостаточно воды"
             return massage
         } else
-        if (beans > this.beans!!) {
-            massage = "Недостаточно зерен"
-            return massage
-        }
+            if (milk > this.milk!!) {
+                massage = "Недостаточно молока"
+                return massage
+            } else
+                if (beans > this.beans!!) {
+                    massage = "Недостаточно зерен"
+                    return massage
+                }
         return true
     }
 }
+
+// Начните написание программы с публичной функции start().
+// В этот раз мы не даём вам конкретных указаний, как должна быть написана программа.
+// У вас есть полная свобода действией, главное, что бы программа соответствовала ТЗ.
+// Удачи!
+
 
 // Начните написание программы с публичной функции start().
     // В этот раз мы не даём вам конкретных указаний, как должна быть написана программа.
