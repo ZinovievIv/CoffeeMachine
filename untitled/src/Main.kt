@@ -11,9 +11,12 @@ class CoffeeMachine {
 
     var massage : String = " "
 
-
     fun start() {
         println("Кофемашина готова к работе")
+        start2()
+        }
+
+    fun start2() {
         while (true) {
             println("Введите команду")
             var inputCommand = (scanner.nextLine()).lowercase()
@@ -23,25 +26,27 @@ class CoffeeMachine {
                     println("До свидания!")
                     break
                 }
+
                 "наполнить" -> {
                     water = 2000
                     milk = 1000
                     beans = 500
                     println("Ингридиенты пополнены")
                 }
+
                 "статус" -> println("Ингридиентов осталось: ${water} мл воды\n${milk} мл молока\n${beans} гр кофе")
                 "кофе" -> {
-                    println("Введите название напитка или назад для возврата в главное меню")
+                    println("Введите название напитка или \"назад\" для возврата в главное меню")
                     var inputCommand2 = (scanner.nextLine()).lowercase()
-                    coffee(inputCommand2)
-                }
+                    Сoffee(inputCommand2)
                 }
             }
         }
+    }
 
 
 
-    fun coffee(i: String) {
+    fun Сoffee(i: String): Any {
         when (i) {
             "Эспрессо" -> {
                 if ((checkCoffee(0, 60, 10)) == true) {
@@ -87,15 +92,18 @@ class CoffeeMachine {
             }
 
             "назад" -> {
-                start()
+                start2()
             }
             else -> {
-                println("Рецепт не найден")
-                var inputCommand3 = (scanner.nextLine()).lowercase()
-                coffee(inputCommand3)
-            }
+                println("Рецепт не найден!")
 
+                //start2()
+                //println("Введите команду")
+                //var inputCommand3 = (scanner.nextLine()).lowercase()
+                //coffee(inputCommand3)
+            }
         }
+        return false
     }
 
 
