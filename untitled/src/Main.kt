@@ -38,7 +38,8 @@ class CoffeeMachine {
                 "кофе" -> {
                     println("Введите название напитка или \"назад\" для возврата в главное меню")
                     var inputCommand2 = (scanner.nextLine()).lowercase()
-                    Сoffee(inputCommand2)
+
+                    сoffee(inputCommand2)
                 }
             }
         }
@@ -46,46 +47,48 @@ class CoffeeMachine {
 
 
 
-    fun Сoffee(i: String): Any {
+    fun сoffee(i: String) {
+        val espresso : String = "эспрессо"
+        val americano : String = "американо"
+        val latte : String = "латте"
+        val kapuchino : String = "капучино"
         when (i) {
-            "Эспрессо" -> {
+            "эспрессо" -> {
                 if ((checkCoffee(0, 60, 10)) == true) {
                     water = this.water!!.minus(60)
                     beans = this.beans!!.minus(10)
-                    println("Эспрессо готов")
+                    println("${espresso} готов")
                 } else {
                     println(massage)
                 }
             }
-
-
-            "Американо" -> {
+            "американо" -> {
                 if (checkCoffee(0, 120, 10) == true) {
                     water = this.water!!.minus(120)
                     beans = this.beans!!.minus(10)
-                    println("Американо готов")
+                    println("${americano} готов")
                 } else {
                     println(massage)
                 }
             }
 
-            "Капучино" -> {
+            "капучино" -> {
                 if (checkCoffee(60, 120,20) == true) {
                     water = this.water!!.minus(120)
                     beans = this.beans!!.minus(20)
                     milk = this.milk!!.minus(60)
-                    println("Капучино готов")
+                    println("${kapuchino} готов")
                 } else {
                     println(massage)
                 }
             }
 
-            "Латте" -> {
+            "латте" -> {
                 if (checkCoffee(120, 240, 20) == true) {
                     water = this.water!!.minus(240)
                     beans = this.beans!!.minus(20)
                     milk = this.milk!!.minus(120)
-                    println("Латте готов")
+                    println("${latte} готов")
                 } else {
                     println(massage)
                 }
@@ -96,14 +99,12 @@ class CoffeeMachine {
             }
             else -> {
                 println("Рецепт не найден!")
-
-                //start2()
+                start2()
                 //println("Введите команду")
                 //var inputCommand3 = (scanner.nextLine()).lowercase()
                 //coffee(inputCommand3)
             }
         }
-        return false
     }
 
 
